@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csx.ssi.dao.UserMapper">
+    <resultMap id="userResultMap" type="com.csx.ssi.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="register" parameterType="User">
+         INSERT  INTO user (email,password) VALUES (#{email},#{password})
+    </insert>
+    <!-- 用户登陆 -->
+    <select id="login" parameterType="User" resultMap="userResultMap">
+        select * from user where email =#{email} and password =#{password}
+    </select>
+
+</mapper>
